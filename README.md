@@ -1,16 +1,54 @@
-# React + Vite
+# PWA_Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is the main development for the **Advanced Web Programming** course (Programación Web Avanzada) at Universidad Nacional del Comahue. It is a modern web application built with React, focused on delivering a seamless user experience and optimized performance.
 
-Currently, two official plugins are available:
+## 🚀 Main Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Framework:** [React](https://react.dev/)
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Navigation:** [React Router](https://reactrouter.com/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 
-## React Compiler
+## 🛠️ Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Make sure you have the following installed:
+- [Node.js](https://nodejs.org/) (LTS version recommended)
+- [npm](https://www.npmjs.com/)
 
-## Expanding the ESLint configuration
+## 📦 Installation and Setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Clone the repository:**
+   ```bash
+   git clone <https://github.com/FacuLedesmaBertalot/PWA_Frontend>
+   cd PWA_Frontend
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+## 📂 Critical Configuration Structure
+
+To ensure that styles and navigation work correctly, the project relies on the following setup:
+
+- **Tailwind CSS:** Configured via `@tailwindcss/vite` inside the `vite.config.js` file to support version 4 features.
+- **Global Styles:** The `@import "tailwindcss";` directive is located in `src/index.css`.
+- **Routing:** Centralized navigation management using React Router.
+
+## 💻 Git Workflow
+
+To maintain an organized team development process, we follow this branch schema:
+
+- `main`: Stable code, ready for production.
+- `branch_name`: Integration branch for new features.
+> **Note:** Before pushing changes to the `branch_name` or `main` branches, ensure you run `git pull` to prevent merge conflicts.
+
+---
+© 2026 - Facultad de Informática, Universidad Nacional del Comahue.
+---
