@@ -49,6 +49,12 @@ To maintain an organized team development process, we follow this branch schema:
 - `branch_name`: Integration branch for new features.
 > **Note:** Before pushing changes to the `branch_name` or `main` branches, ensure you run `git pull` to prevent merge conflicts.
 
+## 👥 Participantes
+
+- <img src="https://github.com/FacuLedesmaBertalot.png" width="50"> | **Facundo** | [@FacuLedesmaBertalot](https://github.com/FacuLedesmaBertalot) | Project Manager |
+- <img src="https://github.com/Alejo4758.png" width="50"> | **Alejo** | [@Alejo4758](https://github.com/Alejo4758) | Developer 1 |
+- <img src="https://github.com/Ibenjamindlf.png" width="50"> | **Benjamin** | [@Ibenjamindlf](https://github.com/Ibenjamindlf) | Developer 2 |
+
 ---
 © 2026 - Facultad de Informática, Universidad Nacional del Comahue.
 ---
