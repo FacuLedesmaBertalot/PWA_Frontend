@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
+import HeroSection from './components/Hero/heroSection';
 
 function App() {
   return (
     <BrowserRouter>
+      <HeroSection />
       <Routes>
         <Route 
           path="/" 
