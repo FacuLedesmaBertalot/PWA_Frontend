@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
+import Navbar from './components/Navbar/Navbar';
 import HeroSection from './components/Hero/heroSection';
+
+
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <HeroSection />
       <Routes>
         <Route 

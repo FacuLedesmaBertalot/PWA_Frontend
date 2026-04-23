@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+  /* Definición de la paleta "Tempo Deluxe" */
+  --color-primary: #022c22;
+  --color-secondary: #064e3b;
+  --color-accent: #d4af37;
+  --color-contrast: #ffffff;
+}
