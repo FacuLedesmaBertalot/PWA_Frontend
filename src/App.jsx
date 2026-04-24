@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 import Navbar from './components/Navbar/Navbar';
 import HeroSection from './components/Hero/heroSection';
 import Footer from './components/Footer/Footer';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <Navbar />
         <main className="flex-grow">
           <Routes>
-            <Route path="/" element={<HeroSection />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </main>
         <Footer />
