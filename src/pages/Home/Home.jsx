@@ -1,12 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { getItems } from '../../services/itemsService';
 import HeroSection from '../../components/Hero/heroSection';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
+import FilterBar from '../../components/FilterBar/FilterBar';
 
 const Home = () => {
   const [watches, setWatches] = useState([]);
   const [pages, setPages] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [filters, setFilters] = useState ({
+    search: '',
+    category: '',
+    brand: ''
+  });
 
   const fetchWatches = async () => {
     setLoading(true);
@@ -26,7 +32,23 @@ const Home = () => {
     fetchWatches();
   }, [pages]);
 
+  console.log (watches)
+
   const loadMore = () => setPages((prevPages) => prevPages + 1);
+
+  const categories = useMemo (() => [...new Set (watches.map ((w) => w.categoria).filter (Boolean))], [watches]);
+
+  const brands = useMemo (() => [...new Set (watches.map ((w) => w.marca).filter (Boolean))], [watches]);
+
+  const filteredWatches = useMemo (() => {
+    return watches.filter ((w) => {
+      const matchesSearch    = !filters.search    || w.nombre?.toLowerCase ().includes (filters.search.toLowerCase ());
+      const matchesCategory  = !filters.category  || w.categoria === filters.category;
+      const matchesBrand     = !filters.brand     || w.marca === filters.brand;
+
+      return matchesSearch && matchesCategory && matchesBrand;
+    });
+  }, [watches, filters]);
 
   return (
     <>
@@ -48,10 +70,20 @@ const Home = () => {
             Catálogo <span className="text-sm font-sans text-accent tracking-widest uppercase ml-2">(Vista Temporal)</span>
           </h2>
         </div>
+
+        <div className="w-full mb-10">
+          <FilterBar
+            filters={filters}
+            setFilters={setFilters}
+            categories={categories}
+            brands={brands}
+            disabled={loading}
+          />
+        </div>
         
         {/* Grilla temporal responsive, centrada y con buen espaciado */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full justify-items-center">
-          {watches.map((r) => (
+          {filteredWatches.map((r) => (
             // Product Card renderizado
             <ProductCard 
               key={r.id}
@@ -63,6 +95,12 @@ const Home = () => {
             />
           ))}
         </div>
+
+        {filteredWatches.length === 0 && !loading && (
+          <p className="text-contrast/30 text-sm tracking-widest uppercase mt-16">
+            No se encontraron piezas con esos criterios.
+          </p>
+        )}
 
         <button 
             onClick={loadMore} 
