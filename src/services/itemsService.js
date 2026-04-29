@@ -1,6 +1,7 @@
 const BASE_URL = 'https://69e6b12a68208c1debe7e1c7.mockapi.io';
 
 export const getItems = async (page = 1, limit = 10, search = '') => {
+    
     try {
         const url = new URL(`${BASE_URL}/items`);
         url.searchParams.append('page', page);
@@ -19,7 +20,7 @@ export const getItems = async (page = 1, limit = 10, search = '') => {
         if (!response.ok) {
             return { data: null, error: `Error del servidor: ${response.status}` };
         }
-        
+
         const data = await response.json();
         return { data, error: null };
 
