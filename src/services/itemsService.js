@@ -1,12 +1,27 @@
 const BASE_URL = 'https://69e6b12a68208c1debe7e1c7.mockapi.io';
 
-export const getItems = async (page, limit) => {
+export const getItems = async (page = 1, limit = 10, search = '') => {
+    
     try {
-        const response = await fetch (`${BASE_URL}/items?page=${page}&limit=${limit}`);
+        const url = new URL(`${BASE_URL}/items`);
+        url.searchParams.append('page', page);
+        url.searchParams.append('limit', limit);
 
-        if (!response.ok) return { data: null, error: `Error del servidor: ${response.status}` };
+        if (search) {
+            url.searchParams.append('nombre', search);
+        }
 
-        const data = await response.json ();
+        const response = await fetch(url);
+
+        if (response.status === 404) {
+            return { data: [], error: null };
+        }
+
+        if (!response.ok) {
+            return { data: null, error: `Error del servidor: ${response.status}` };
+        }
+
+        const data = await response.json();
         return { data, error: null };
 
     } catch (error) {
