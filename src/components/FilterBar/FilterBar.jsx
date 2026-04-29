@@ -5,10 +5,10 @@ const FilterBar = ({ categories = [], brands = [], disabled = false }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   
-  const [localSearch, setLocalSearch] = useState(searchParams.get('search') || '');
+  const [localSearch, setLocalSearch] = useState(searchParams.get('items') || '');
 
   useEffect(() => {
-    setLocalSearch(searchParams.get('search') || '');
+    setLocalSearch(searchParams.get('items') || '');
   }, [searchParams]);
 
   const handleChange = (e) => {
@@ -23,7 +23,7 @@ const FilterBar = ({ categories = [], brands = [], disabled = false }) => {
   const handleSearch = () => {
     const query = localSearch.trim();
     if (query) {
-      navigate(`/?search=${query}`);
+      navigate(`/?items=${query}`);
     } else {
       navigate('/');
     }
