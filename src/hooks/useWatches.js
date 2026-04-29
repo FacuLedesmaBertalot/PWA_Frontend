@@ -8,7 +8,7 @@ export const useWatches = () => {
   const [loading, setLoading] = useState(false);
 
   const [searchParams] = useSearchParams();
-  const searchQuery = searchParams.get('search') || '';
+  const searchQuery = searchParams.get('items') || '';
 
   const fetchWatches = async (reset = false) => {
     setLoading(true);
