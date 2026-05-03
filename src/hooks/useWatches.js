@@ -4,6 +4,7 @@ import { getItems } from '../services/itemsService';
 
 export const useWatches = () => {
   const [watches, setWatches] = useState([]);
+  const [hasMore, setHasMore] = useState(true); 
   const [pages, setPages] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -18,14 +19,21 @@ export const useWatches = () => {
 
     if (data) {
       setWatches(reset ? data : (prev) => [...prev, ...data]);
-    } else if (reset) {
-      setWatches([]);
+      
+      setHasMore(data.length === 4); 
+
+    } else {
+      if (reset) {
+        setWatches([]);
+      }
+      setHasMore(false); 
     }
     setLoading(false);
   };
 
   useEffect(() => {
     setPages(1);
+    setHasMore(true); 
     fetchWatches(true);
   }, [searchQuery]);
 
@@ -35,12 +43,17 @@ export const useWatches = () => {
     }
   }, [pages]);
 
-  const loadMore = () => setPages((prev) => prev + 1);
+  const loadMore = () => {
+    if (hasMore && !loading) {
+      setPages((prev) => prev + 1);
+    }
+  };
 
   return {
     watches,
     loading,
     searchQuery,
-    loadMore
+    loadMore,
+    hasMore 
   };
 };
