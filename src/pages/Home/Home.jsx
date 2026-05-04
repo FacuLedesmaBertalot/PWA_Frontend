@@ -3,6 +3,7 @@ import FilterBar from '../../components/FilterBar/FilterBar';
 import { useWatches } from '../../hooks/useWatches';
 import { ProductGrid } from '../../components/ProductGrid/ProductGrid';
 import { InfiniteScrollTrigger } from '../../components/InfiniteScrollTrigger/InfiniteScrollTrigger';
+import ProductSection from '../../components/ProductSection/ProductSection';
 
 const Home = () => {
   const { watches, loading, loadMore } = useWatches();
@@ -19,19 +20,8 @@ const Home = () => {
           </h2>
         </div>
 
-        <div className="w-full mb-10">
-          <FilterBar disabled={loading}/>
-        </div>
-        
-        <ProductGrid watches={watches} />
+        <ProductSection/>
 
-
-        {watches.length > 0 && (
-          <InfiniteScrollTrigger 
-            onTrigger={loadMore} 
-            loading={loading} 
-          />
-        )}
       </div>
     </div>
   );
