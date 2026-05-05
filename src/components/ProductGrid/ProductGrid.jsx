@@ -21,6 +21,7 @@ export const ProductGrid = ({ watches }) => {
           className="w-full flex justify-center outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
         >
           <ProductCard
+            watch={watch}
             brand={watch.marca}
             model={watch.nombre}
             price={watch.precio || 0}

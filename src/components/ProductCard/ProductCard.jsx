@@ -1,9 +1,14 @@
 import React from 'react';
+import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
 
-export const ProductCard = ({ brand, model, price, image, features }) => {
+export const ProductCard = ({ watch, brand, model, price, image, features }) => {
   return (
     <article className="relative bg-primary border border-secondary/50 rounded-lg overflow-hidden shadow-lg hover:shadow-[0_0_30px_-5px_rgba(212,175,55,0.25)] hover:border-accent/60 transition-all duration-700 max-w-sm flex flex-col group cursor-pointer">
       
+      <div className="absolute top-4 right-4 z-20">
+        <FavoriteButton watch={watch} />
+      </div>
+
       <div className="absolute inset-0 bg-gradient-to-tr from-accent/0 via-accent/0 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
       <div className="relative bg-contrast/5 aspect-square p-8 flex justify-center items-center overflow-hidden">
