@@ -104,7 +104,7 @@ const Footer = () => {
 
           <p className="text-xs text-contrast/50 font-light md:w-1/3 md:text-center">
             Desarrollado por:{' '}
-            <a href="https://github.com/FacuLedesmaBertalot" target="_blank" rel="noopener noreferrer" className="text-contrast/70 hover:text-accent transition-colors duration-300">Facundo Ledezma</a>,{' '}
+            <a href="https://github.com/FacuLedesmaBertalot" target="_blank" rel="noopener noreferrer" className="text-contrast/70 hover:text-accent transition-colors duration-300">Facundo Ledesma</a>,{' '}
             <a href="https://github.com/Alejo4758" target="_blank" rel="noopener noreferrer" className="text-contrast/70 hover:text-accent transition-colors duration-300">Alejo Lopez</a> y{' '}
             <a href="https://github.com/Ibenjamindlf" target="_blank" rel="noopener noreferrer" className="text-contrast/70 hover:text-accent transition-colors duration-300">Benjamin de la Fuente</a>
           </p>
