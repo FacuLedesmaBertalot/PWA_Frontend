@@ -1,13 +1,7 @@
 import HeroSection from '../../components/Hero/heroSection';
-import FilterBar from '../../components/FilterBar/FilterBar';
-import { useWatches } from '../../hooks/useWatches';
-import { ProductGrid } from '../../components/ProductGrid/ProductGrid';
-import { InfiniteScrollTrigger } from '../../components/InfiniteScrollTrigger/InfiniteScrollTrigger';
 import ProductSection from '../../components/ProductSection/ProductSection';
 
 const Home = () => {
-  const { watches, loading, loadMore } = useWatches();
-
   return (
     <div className="bg-primary min-h-screen">
       <HeroSection />
@@ -20,7 +14,7 @@ const Home = () => {
           </h2>
         </div>
 
-        <ProductSection/>
+        <ProductSection />
 
       </div>
     </div>

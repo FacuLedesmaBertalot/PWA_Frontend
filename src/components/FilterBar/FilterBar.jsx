@@ -15,23 +15,18 @@ const FilterBar = ({ onSearch, categories = [], brands = [], disabled = false })
     setLocalSearch(e.target.value);
   };
 
-  // Las líneas comentadas en las funciones de abajo se implementan cuando integremos react-router
-  // Una vez integrado, se eliminaria la prop onSearch. Es temporal para verificar que todo funcione bien.
-
   const handleClear = () => {
     setLocalSearch('');
-    onSearch ('');
-    // navigate('/');
+    navigate('/'); 
   };
 
   const handleSearch = () => {
-    onSearch (localSearch);
-    // const query = localSearch.trim();
-    // if (query) {
-    //   navigate(`/?items=${query}`);
-    // } else {
-    //   navigate('/');
-    // }
+    const query = localSearch.trim();
+    if (query) {
+      navigate(`/?items=${query}`);
+    } else {
+      navigate('/');
+    }
   };
 
   const handleKeyDown = (e) => {
