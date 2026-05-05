@@ -58,8 +58,6 @@ export const Details = () => {
         <nav className="text-xs uppercase tracking-widest text-contrast/60 mb-10 md:mb-16 flex items-center gap-3">
           <Link to="/" className="hover:text-accent transition-colors duration-300">Colección</Link>
           <span className="text-accent/40">/</span>
-          <Link to={`/marca/${watch.marca.toLowerCase()}`} className="hover:text-accent transition-colors duration-300">{watch.marca}</Link>
-          <span className="text-accent/40">/</span>
           <span className="text-accent">{watch.nombre}</span>
         </nav>
  
