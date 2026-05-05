@@ -1,44 +1,13 @@
-import { useState } from 'react';
 import { Link } from 'react-router';
 import { ProductGrid } from '../../components/ProductGrid/ProductGrid';
+import { useFavorites } from '../../hooks/useFavorites';
+
 
 export const Favorites = () => {
-  // --- MOCK DE ESTADO PARA TESTEO VISUAL ---
-  // Cambiá este valor a 'true' para ver la grilla, o 'false' para ver el estado vacío.
-  const [hasFavorites, setHasFavorites] = useState(false);
 
-  // --- MOCK DE DATOS (Basado en la estructura de tu API) ---
-  // --- Maqueta estatica de datos para testear el uso de /favorites
-  // --- Eliminar una vez se haga la conexion con la API
-  const mockFavorites = [
-    {
-      id: "1",
-      nombre: "Submariner Date",
-      marca: "Rolex",
-      precio: 10500,
-      materiales: ["Acero Oystersteel", "Cerámica"],
-      imagen: "https://picsum.photos/seed/rolex1/600/600",
-      resistencia_agua: "300m",
-      categoria: "Buceo",
-      stock: 4,
-      destacado: true,
-      detalles_breve: "El reloj de buceo de referencia que trasciende las profundidades.",
-    },
-    {
-      id: "2",
-      nombre: "Royal Oak",
-      marca: "Audemars Piguet",
-      precio: 25000,
-      materiales: ["Acero Inoxidable"],
-      imagen: "https://picsum.photos/seed/ap1/600/600",
-      resistencia_agua: "50m",
-      categoria: "Deportivo Elegante",
-      stock: 2,
-      destacado: false,
-      detalles_breve: "Un ícono que redefinió la relojería de lujo deportiva.",
-    }
-  ];
-  // --- Fin de la maqueta estatica ---
+  const { favorites } = useFavorites();
+
+  const hasFavorites = favorites.length > 0;
 
   return (
     <div className="bg-primary min-h-screen text-contrast pb-24 font-sans relative z-0">
@@ -60,7 +29,7 @@ export const Favorites = () => {
         {hasFavorites ? (
           
           <div className="animate-[fadeIn_1s_ease-out]">
-            <ProductGrid watches={mockFavorites} />
+            <ProductGrid watches={favorites} />
           </div>
 
         ) : (
