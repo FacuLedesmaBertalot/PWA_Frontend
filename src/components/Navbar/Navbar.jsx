@@ -1,24 +1,43 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router';
+
+const ArgentinaFlag = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" className="h-4 w-6 rounded-sm shadow-sm">
+    <rect width="900" height="600" fill="#74ACDF"/>
+    <rect width="900" height="200" y="200" fill="#fff"/>
+    <circle cx="450" cy="300" r="60" fill="#F6B40E"/>
+    <circle cx="450" cy="300" r="45" fill="#F6B40E" stroke="#85340A" strokeWidth="3"/>
+  </svg>
+);
+
+const USAFlag = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" className="h-4 w-6 rounded-sm shadow-sm">
+    <rect width="900" height="600" fill="#B22234"/>
+    <rect width="900" height="46.15" y="46.15" fill="#fff"/>
+    <rect width="900" height="46.15" y="138.46" fill="#fff"/>
+    <rect width="900" height="46.15" y="230.77" fill="#fff"/>
+    <rect width="900" height="46.15" y="323.08" fill="#fff"/>
+    <rect width="900" height="46.15" y="415.38" fill="#fff"/>
+    <rect width="900" height="46.15" y="507.69" fill="#fff"/>
+    <rect width="360" height="323.08" fill="#3C3B6E"/>
+  </svg>
+);
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [lang, setLang] = useState('es');
 
-  // Funciones para manejar los clicks estáticos 
-  const handleNavigation = (e) => {
-    e.preventDefault();
-    // A futuro se implementar el routing (ej. useNavigate de react-router-dom)
-  };
+  const toggleLang = () => setLang(prev => prev === 'es' ? 'en' : 'es');
 
   return (
     <nav className="bg-primary border-b border-accent/30 font-serif shadow-xl sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
-          
-          {/* 1. Logo / Título a la izquierda */}
+
+          {/* Logo */}
           <div className="flex-shrink-0 flex items-center cursor-pointer">
-            <a 
-              href="/" 
-              onClick={handleNavigation}
+            <Link
+              to="/"
               className="flex flex-col items-center justify-center transition-transform hover:scale-105 duration-300"
             >
               <span className="text-contrast text-3xl md:text-4xl font-bold tracking-[0.25em] drop-shadow-md">
@@ -27,54 +46,60 @@ const Navbar = () => {
               <span className="text-accent text-xs md:text-sm font-semibold tracking-[0.35em] mt-1">
                 DELUXE
               </span>
-            </a>
+            </Link>
           </div>
 
-          {/* 2. Links de navegación en el centro (Desktop) */}
+          {/* Links Desktop */}
           <div className="hidden md:flex space-x-12 absolute left-1/2 transform -translate-x-1/2">
-            <a 
-              href="#home" 
-              onClick={handleNavigation}
+            <Link
+              to="/"
               className="text-accent hover:text-contrast transition-colors duration-300 uppercase tracking-widest text-sm font-medium border-b border-transparent hover:border-contrast pb-1"
             >
               Home
-            </a>
-            <a 
-              href="#relojes" 
-              onClick={handleNavigation}
+            </Link>
+            <Link
+              to="/favoritos"
               className="text-accent hover:text-contrast transition-colors duration-300 uppercase tracking-widest text-sm font-medium border-b border-transparent hover:border-contrast pb-1"
             >
-              Relojes
-            </a>
+              Favoritos
+            </Link>
           </div>
 
-          {/* 3. Botón de Login/Register a la derecha (Desktop) */}
+          {/* Selector de idioma Desktop */}
           <div className="hidden md:flex items-center">
-            <button 
-              onClick={handleNavigation}
-              className="text-accent hover:text-primary hover:bg-accent transition-all duration-300 p-2.5 rounded-full border border-accent/50 focus:outline-none"
-              title="Login / Register"
+            <button
+              onClick={toggleLang}
+              className="cursor-pointer flex items-center gap-2 border border-accent/30 hover:border-accent/70 bg-transparent hover:bg-accent/10 transition-all duration-300 px-3 py-2 rounded-sm group"
             >
-              {/* Ícono de Usuario SVG */}
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
+              {lang === 'es' ? <ArgentinaFlag /> : <USAFlag />}
+              <span className="text-accent text-xs tracking-widest uppercase font-semibold group-hover:text-contrast transition-colors duration-300">
+                {lang === 'es' ? 'ES' : 'EN'}
+              </span>
             </button>
           </div>
 
-          {/* 6. Botón Menú Hamburguesa (Mobile) */}
-          <div className="md:hidden flex items-center">
+          {/* Hamburguesa Mobile */}
+          <div className="md:hidden flex items-center gap-3">
+            {/* Selector idioma mobile */}
+            <button
+              onClick={toggleLang}
+              className="flex items-center gap-1.5 border border-accent/30 hover:border-accent/70 bg-transparent px-2 py-1.5 rounded-sm"
+            >
+              {lang === 'es' ? <ArgentinaFlag /> : <USAFlag />}
+              <span className="text-accent text-xs tracking-widest uppercase font-semibold">
+                {lang === 'es' ? 'ES' : 'EN'}
+              </span>
+            </button>
+
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-accent hover:text-contrast focus:outline-none transition-colors"
             >
               {isMobileMenuOpen ? (
-                // Ícono de Cerrar (X)
                 <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                // Ícono de Hamburguesa
                 <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -85,36 +110,26 @@ const Navbar = () => {
       </div>
 
       {/* Menú Mobile Desplegable */}
-      <div 
+      <div
         className={`md:hidden absolute w-full bg-secondary border-b border-accent/30 transition-all duration-300 ease-in-out origin-top ${
           isMobileMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 h-0 overflow-hidden'
         }`}
       >
         <div className="px-4 pt-4 pb-6 space-y-4 flex flex-col items-center">
-          <a 
-            href="#home" 
-            onClick={handleNavigation}
+          <Link
+            to="/"
+            onClick={() => setIsMobileMenuOpen(false)}
             className="text-accent hover:text-contrast block px-3 py-2 text-lg font-medium tracking-widest uppercase w-full text-center"
           >
             Home
-          </a>
-          <a 
-            href="#relojes" 
-            onClick={handleNavigation}
+          </Link>
+          <Link
+            to="/favoritos"
+            onClick={() => setIsMobileMenuOpen(false)}
             className="text-accent hover:text-contrast block px-3 py-2 text-lg font-medium tracking-widest uppercase w-full text-center"
           >
-            Relojes
-          </a>
-          <hr className="w-1/2 border-accent/30" />
-          <button 
-            onClick={handleNavigation}
-            className="text-primary bg-accent hover:bg-contrast transition-colors duration-300 px-6 py-2 rounded-sm text-sm font-bold tracking-widest uppercase w-full max-w-xs flex justify-center items-center gap-2"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
-            Ingresar
-          </button>
+            Favoritos
+          </Link>
         </div>
       </div>
     </nav>
