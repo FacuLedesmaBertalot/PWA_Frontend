@@ -8,7 +8,6 @@ const Footer = () => {
     const emailInput = e.target.elements.email;
     if (emailInput.value) {
       emailInput.value = '';
-      // Aquí el próximo dev puede agregar un toast de "Suscripción exitosa"
     }
   };
 
@@ -16,10 +15,8 @@ const Footer = () => {
     <footer className="bg-primary pt-16 pb-8 border-t border-accent/20 font-sans relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* TOP SECTION: Grid de 4 columnas */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           
-          {/* Columna 1: Marca y Manifiesto */}
           <div className="flex flex-col">
             <h2 className="text-2xl font-serif text-accent tracking-widest uppercase mb-6">
               Tempo Deluxe
@@ -29,7 +26,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Columna 2: Navegación Rápida */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-6">
               Explorar
@@ -50,7 +46,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Columna 3: Boutique (Toque de realismo) */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-6">
               Boutique
@@ -61,9 +56,7 @@ const Footer = () => {
               <p>Argentina</p>
             </address>
             
-            {/* Redes Sociales */}
             <div className="flex gap-5 mt-6">
-              {/* Instagram */}
               <a href="https://www.instagram.com/benjamindelafuente_?igsh=MXc2bzIwZnM4eWZtNQ==" className="text-contrast/50 hover:text-accent transition-colors duration-300 hover:-translate-y-1 transform">
                 <span className="sr-only">Instagram</span>
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -73,7 +66,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Columna 4: Newsletter */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-6">
               El Club Tempo
@@ -98,23 +90,18 @@ const Footer = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
               </button>
-              {/* Brillo inferior animado al enfocar el input */}
               <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-500 ease-out group-focus-within:w-full shadow-[0_0_8px_var(--color-accent)]"></div>
             </form>
           </div>
 
         </div>
 
-        {/* BOTTOM SECTION: Legales */}
-{/* BOTTOM SECTION: Legales y Créditos */}
         <div className="border-t border-accent/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
           
-          {/* Izquierda: Copyright */}
           <p className="text-xs text-contrast/50 font-light md:w-1/3">
             © 2026 Tempo Deluxe. Todos los derechos reservados.
           </p>
 
-          {/* Centro: Desarrolladores */}
           <p className="text-xs text-contrast/50 font-light md:w-1/3 md:text-center">
             Desarrollado por:{' '}
             <a href="https://github.com/FacuLedesmaBertalot" target="_blank" rel="noopener noreferrer" className="text-contrast/70 hover:text-accent transition-colors duration-300">Facundo Ledezma</a>,{' '}
@@ -122,7 +109,6 @@ const Footer = () => {
             <a href="https://github.com/Ibenjamindlf" target="_blank" rel="noopener noreferrer" className="text-contrast/70 hover:text-accent transition-colors duration-300">Benjamin de la Fuente</a>
           </p>
 
-          {/* Derecha: Legales */}
           <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6 text-xs text-contrast/50 font-light md:w-1/3">
             <a href="https://actecil.eu/wp-content/uploads/2024/07/Portadas-web-Politica-de-Privacidad.png" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors duration-300">Política de Privacidad</a>
             <a href="https://images7.memedroid.com/images/UPLOADED85/542709c48cd62.jpeg" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors duration-300">Términos de Servicio</a>
