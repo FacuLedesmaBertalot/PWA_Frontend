@@ -1,5 +1,88 @@
 {
     "home": {
+        "catalog": "Our Catalog"
+    },
+    
+    "navbar": {
+        "home": "Home",
+        "favorites": "Favorites",
         "catalog": "Catalog"
+    },
+
+    "hero": {
+        "kicker": "Swiss Craftsmanship Since 1892",
+        "titlePart1": "The Art of",
+        "titleAccent": "Timeless",
+        "titlePart2": "Elegance",
+        "description": "Discover exceptional timepieces where heritage meets innovation. Each piece tells a story of precision, crafted for those who appreciate the finer details.",
+        "ctaExplore": "Explore Collection",
+        "ctaContact": "Contact Us",
+        "altImage": "Emerald Tempo Deluxe Watch"
+    },
+    
+    "filterBar": {
+        "title": "Timepiece Search",
+        "placeholder": "Search by Name",
+        "search": "Search",
+        "clear": "Clear"
+    },
+    
+    "productCard": {
+        "altImage": "Watch {{brand}} {{model}}",
+        "viewPiece": "View Piece"
+    },
+
+    "productGrid": {
+        "emptyMessage": "No exclusive timepieces available at the moment.",
+        "defaultFeature": "Limited Edition"
+    },
+
+    "infiniteScroll": {
+        "loading": "Searching timepieces..."
+    },
+
+    "footer": {
+        "brandDesc": "Time, tailored to you. Curated distinguished timepieces and haute horlogerie for demanding collectors.",
+        "exploreTitle": "Explore",
+        "catalog": "Catalog",
+        "privateCollection": "Private Collection",
+        "boutiqueTitle": "Boutique",
+        "clubTitle": "The Tempo Club",
+        "clubDesc": "Receive invitations to private sales and news about exclusive pieces.",
+        "emailPlaceholder": "Your email address",
+        "copyright": "© 2026 Tempo Deluxe. All rights reserved.",
+        "developedBy": "Developed by:",
+        "and": "and",
+        "privacyPolicy": "Privacy Policy",
+        "termsOfService": "Terms of Service",
+        "cookies": "Cookies"
+    },
+
+    "details": {
+        "loading": "Loading timepiece...",
+        "collection": "Collection",
+        "featured": "Featured",
+        "availability": "Availability",
+        "pieces": "pieces",
+        "whatsappButton": "Quote via WhatsApp",
+        "story": "The Story",
+        "specs": "Technical Specifications",
+        "category": "Category",
+        "waterResistance": "Water Resistance",
+        "materials": "Main Materials"
+    },
+
+    "favorites": {
+        "subtitle": "Your Selection",
+        "title": "Private Collection",
+        "empty_title": "Your safety deposit box awaits.",
+        "empty_description": "You haven't selected any pieces yet. Explore our catalog to discover and safeguard pieces of distinction that elevate your personal style.",
+        "cta": "Discover Catalog"
+    },
+
+    "notFound": {
+        "title": "Oops! It seems we've run out of wind 🫠",
+        "description": "The piece you are looking for is not in our collection; it was acquired by another collector or, unfortunately, lost in a temporal anomaly.",
+        "cta": "Explore the collection"
     }
 }
