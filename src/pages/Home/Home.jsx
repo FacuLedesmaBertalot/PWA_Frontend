@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next';
 import HeroSection from '../../components/Hero/heroSection';
 import ProductSection from '../../components/ProductSection/ProductSection';
 
 const Home = () => {
+  const { t } = useTranslation ();
+
   return (
     <div className="bg-primary min-h-screen">
       <HeroSection />
@@ -10,7 +13,7 @@ const Home = () => {
         
         <div className="w-full mb-8 border-b border-secondary/30 pb-4">
           <h2 className="text-3xl font-serif text-contrast">
-            Catálogo <span className="text-sm font-sans text-accent tracking-widest uppercase ml-2">(Exploración Infinita)</span>
+            {t("home.catalog")} <span className="text-sm font-sans text-accent tracking-widest uppercase ml-2">(Exploración Infinita)</span>
           </h2>
         </div>
 
