@@ -1,5 +1,88 @@
 {
     "home": {
+    "catalog": "Nuestro Catálogo"
+    },
+
+    "navbar": {
+        "home": "Inicio",
+        "favorites": "Favoritos",
         "catalog": "Catálogo"
+    },
+
+    "hero": {
+        "kicker": "Artesanía Suiza Desde 1892",
+        "titlePart1": "El Arte de la",
+        "titleAccent": "Elegancia",
+        "titlePart2": "Atemporal",
+        "description": "Descubre relojes excepcionales donde la herencia se encuentra con la innovación. Cada pieza cuenta una historia de precisión, creada para aquellos que aprecian los detalles más finos.",
+        "ctaExplore": "Explorar Colección",
+        "ctaContact": "Contactanos",
+        "altImage": "Reloj Tempo Deluxe Esmeralda"
+    },
+
+    "filterBar": {
+        "title": "Buscador de Piezas",
+        "placeholder": "Buscar por Nombre",
+        "search": "Buscar",
+        "clear": "Limpiar"
+    },
+
+    "productCard": {
+        "altImage": "Reloj {{brand}} {{model}}",
+        "viewPiece": "Ver Pieza"
+    },
+
+    "productGrid": {
+        "emptyMessage": "No hay piezas exclusivas disponibles en este momento.",
+        "defaultFeature": "Edición Limitada"
+    },
+
+    "infiniteScroll": {
+        "loading": "Buscando piezas..."
+    },
+
+    "footer": {
+        "brandDesc": "El tiempo, a su medida. Curaduría de piezas de distinción y alta relojería para coleccionistas exigentes.",
+        "exploreTitle": "Explorar",
+        "catalog": "Catálogo",
+        "privateCollection": "Colección Privada",
+        "boutiqueTitle": "Boutique",
+        "clubTitle": "El Club Tempo",
+        "clubDesc": "Reciba invitaciones a ventas privadas y novedades sobre piezas exclusivas.",
+        "emailPlaceholder": "Su dirección de correo",
+        "copyright": "© 2026 Tempo Deluxe. Todos los derechos reservados.",
+        "developedBy": "Desarrollado por:",
+        "and": "y",
+        "privacyPolicy": "Política de Privacidad",
+        "termsOfService": "Términos de Servicio",
+        "cookies": "Cookies"
+    },
+
+    "details": {
+        "loading": "Cargando pieza...",
+        "collection": "Colección",
+        "featured": "Destacado",
+        "availability": "Disponibilidad",
+        "pieces": "piezas",
+        "whatsappButton": "Cotizar vía WhatsApp",
+        "story": "El Relato",
+        "specs": "Especificaciones Técnicas",
+        "category": "Categoría",
+        "waterResistance": "Resistencia al Agua",
+        "materials": "Materiales Principales"
+    },
+
+    "favorites": {
+        "subtitle": "Su Selección",
+        "title": "Colección Privada",
+        "empty_title": "Su estuche de seguridad aguarda.",
+        "empty_description": "Aún no ha seleccionado ninguna pieza. Explore nuestro catálogo para descubrir y resguardar piezas de distinción que eleven su estilo personal.",
+        "cta": "Descubrir Catálogo"
+    },
+
+    "notFound": {
+        "title": "¡Ups! Parece que nos quedamos sin cuerda 🫠",
+        "description": "La pieza que buscás no está en nuestra colección, fue adquirida por otro coleccionista o, lamentablemente, se perdió en una anomalía temporal.",
+        "cta": "Explorar la colección"
     }
 }
