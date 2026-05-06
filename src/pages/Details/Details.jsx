@@ -4,39 +4,49 @@ import { getItemById }  from '../../services/itemsService';
 import { useTranslation } from 'react-i18next';
 
 export const Details = () => {
-  const { id } = useParams ();
-  const navigate = useNavigate ();
+  const { id } = useParams();
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const [error, setError] = useState (null);
-  const [watch, setWatch] = useState (null);
-  const [loading, setLoading] = useState (true);
+  const [error, setError] = useState(null);
+  const [watch, setWatch] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect (() => {
+  const [zoomPos, setZoomPos] = useState({ x: 0, y: 0 });
+  const [isZooming, setIsZooming] = useState(false);
+
+  useEffect(() => {
     const fetchWatch = async () => {
-      setLoading (true);
-      const { data, error: fetchError } = await getItemById (id);
+      setLoading(true);
+      const { data, error: fetchError } = await getItemById(id);
       if (data && !fetchError) {
-        setWatch (data);
-        setLoading (false);
+        setWatch(data);
+        setLoading(false);
       }
       else {
-        navigate ('/404', { replace: true });
+        navigate('/404', { replace: true });
       }
     }
 
-    fetchWatch ();
+    fetchWatch();
   }, [id]);
 
-  useEffect (() => {
-    window.scrollTo (0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
-  const formatPrecio = num => `$${num.toLocaleString ()}`;
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    setZoomPos({ x, y });
+  };
+
+  const formatPrecio = num => `$${num.toLocaleString()}`;
 
   const numeroWhatsApp = '5492996225551';
   const mensajeWhatsApp = watch ? 
-    encodeURIComponent (`Hola, me gustaría solicitar una cotización por la pieza ${watch.nombre}.`) :
+    encodeURIComponent(`Hola, me gustaría solicitar una cotización por la pieza ${watch.nombre}.`) :
     '';
   const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeWhatsApp}`;
 
@@ -52,41 +62,57 @@ export const Details = () => {
 
   return (
     <div className="relative overflow-hidden bg-primary min-h-screen text-contrast pb-24 font-sans z-0">
- 
+
       <div className="absolute top-[30%] -left-40 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
- 
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
- 
+
         <nav className="text-xs uppercase tracking-widest text-contrast/60 mb-10 md:mb-16 flex items-center gap-3">
           <Link to="/" className="hover:text-accent transition-colors duration-300">{t('details.collection')}</Link>
           <span className="text-accent/40">/</span>
           <span className="text-accent">{watch.nombre}</span>
         </nav>
- 
+
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
- 
+
           <div className="w-full lg:w-1/2">
-            <div className="relative group">
-              <div className="aspect-square bg-secondary/20 rounded-sm overflow-hidden relative shadow-lg transition-all duration-700 group-hover:shadow-[0_0_40px_-10px_var(--color-accent)]">
-                <img
-                  src={watch.imagen}
-                  alt={`${watch.marca} ${watch.nombre}`}
-                  className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110"
-                />
- 
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
- 
-                {watch.destacado && (
-                  <span className="absolute top-6 right-6 bg-accent text-primary text-[10px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-sm shadow-lg">
-                    {t('details.featured')}
-                  </span>
-                )}
-              </div>
+            <div 
+              className="relative aspect-square bg-secondary/5 rounded-sm overflow-hidden flex items-center justify-center p-12 shadow-inner cursor-crosshair group"
+              onMouseEnter={() => setIsZooming(true)}
+              onMouseLeave={() => setIsZooming(false)}
+              onMouseMove={handleMouseMove}
+            >
+              <img
+                src={watch.imagen}
+                alt={`${watch.marca} ${watch.nombre}`}
+                className={`w-full h-full object-contain transition-all duration-700 ease-out z-10 ${
+                  isZooming ? 'opacity-0 scale-95' : 'opacity-100 scale-130'
+                }`}
+              />
+
+              <div 
+                className="absolute inset-0 z-20 pointer-events-none transition-opacity duration-300"
+                style={{
+                  backgroundImage: `url(${watch.imagen})`,
+                  backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
+                  backgroundSize: '250%',
+                  backgroundRepeat: 'no-repeat',
+                  opacity: isZooming ? 1 : 0,
+                }}
+              ></div>
+
+              <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(2,44,34,0.15)] pointer-events-none z-30"></div>
+
+              {watch.destacado && (
+                <span className="absolute top-6 right-6 bg-accent text-primary text-[10px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-sm shadow-md z-40">
+                  {t('details.featured')}
+                </span>
+              )}
             </div>
           </div>
- 
+
           <div className="w-full lg:w-1/2 flex flex-col pt-4">
- 
+
             <div className="border-b border-accent/20 pb-10 mb-10">
               <h2 className="text-sm text-accent uppercase tracking-[0.3em] mb-4 font-semibold flex items-center gap-4">
                 <span className="w-6 h-[1px] bg-accent"></span>
@@ -98,7 +124,7 @@ export const Details = () => {
               <p className="text-base text-contrast/70 font-light leading-relaxed mb-8">
                 {watch.detalles_breve}
               </p>
- 
+
               <div className="flex items-end justify-between gap-4">
                 <p className="text-3xl md:text-4xl font-serif text-accent font-light tracking-tight">
                   {formatPrecio(watch.precio)}
@@ -109,7 +135,7 @@ export const Details = () => {
                 </p>
               </div>
             </div>
- 
+
             <a
               href={linkWhatsApp}
               target="_blank"
@@ -119,7 +145,7 @@ export const Details = () => {
               <span className="relative z-10">{t('details.whatsappButton')}</span>
               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-contrast/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite] z-0"></div>
             </a>
- 
+
             <div className="mb-16 group">
               <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-6 flex items-center transition-all duration-500 group-hover:translate-x-2">
                 <span className="w-8 h-[1px] bg-accent mr-4"></span>
@@ -129,20 +155,20 @@ export const Details = () => {
                 {watch.detalles}
               </p>
             </div>
- 
+
             <div className="border-t border-accent/20 pt-10 group">
               <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-8 flex items-center transition-all duration-500 group-hover:translate-x-2">
                 <span className="w-8 h-[1px] bg-accent mr-4"></span>
                 {t('details.specs')}
               </h3>
- 
+
               <dl className="divide-y divide-accent/10 text-sm border-b border-accent/10">
                 <SpecificationRow label={t('details.category')} value={watch.categoria} />
                 <SpecificationRow label={t('details.waterResistance')} value={watch.resistencia_agua} />
                 <SpecificationRow label={t('details.materials')} value={watch.materiales?.join(', ')} />
               </dl>
             </div>
- 
+
           </div>
         </div>
       </div>
