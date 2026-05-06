@@ -8,12 +8,11 @@ return (
         </h1>
 
         <h2 className="text-2xl md:text-3xl text-contrast mb-5 font-serif font-extralight tracking-tight">
-            ¡Ups! Parece que nos quedamos sin cuerda 🫠
+            {t('notFound.title')}
         </h2>
 
         <p className="text-contrast/70 mb-12 max-w-md mx-auto leading-relaxed text-base font-light">
-            La pieza que buscás no está en nuestra colección, fue adquirida por otro
-            coleccionista o, lamentablemente, se perdió en una anomalía temporal.
+            {t('notFound.description')}
         </p>
 
         <Link
@@ -23,7 +22,7 @@ return (
             <span className="absolute inset-0 w-full h-full bg-accent transition-all duration-300 ease-out transform translate-y-full group-hover:translate-y-0"></span>
 
             <span className="relative uppercase tracking-[0.2em] text-xs font-semibold">
-                Explorar la colección
+                {t('notFound.cta')}
             </span>
         </Link>
     </div>

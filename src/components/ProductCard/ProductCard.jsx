@@ -1,7 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
 
 export const ProductCard = ({ watch, brand, model, price, image, features }) => {
+  const { t } = useTranslation();
+
   return (
     <article className="relative bg-primary border border-secondary/50 rounded-lg overflow-hidden shadow-lg hover:shadow-[0_0_30px_-5px_rgba(212,175,55,0.25)] hover:border-accent/60 transition-all duration-700 max-w-sm flex flex-col group cursor-pointer">
       
@@ -16,7 +19,8 @@ export const ProductCard = ({ watch, brand, model, price, image, features }) => 
         
         <img
           src={image || "https://via.placeholder.com/300"}
-          alt={`Reloj ${brand} ${model}`}
+          // Pasamos las variables como un objeto para que i18next las inyecte
+          alt={t('productCard.altImage', { brand, model })}
           className="relative z-10 object-contain h-full w-full drop-shadow-2xl group-hover:scale-110 group-hover:-rotate-2 transition-all duration-700 ease-out"
         />
       </div>
@@ -42,7 +46,8 @@ export const ProductCard = ({ watch, brand, model, price, image, features }) => 
           </span>
           
           <button className="relative overflow-hidden bg-transparent border border-accent text-accent px-5 py-2 text-sm font-semibold rounded group/btn hover:text-primary transition-colors duration-500">
-            <span className="relative z-10">Ver Pieza</span>
+
+            <span className="relative z-10">{t('productCard.viewPiece')}</span>
             <div className="absolute inset-0 bg-accent transform scale-x-0 origin-left group-hover/btn:scale-x-100 transition-transform duration-500 ease-out z-0"></div>
           </button>
         </div>

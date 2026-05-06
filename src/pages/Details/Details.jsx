@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link, replace, useNavigate, useParams } from 'react-router';
 import { getItemById }  from '../../services/itemsService';
+import { useTranslation } from 'react-i18next';
 
 export const Details = () => {
   const { id } = useParams ();
   const navigate = useNavigate ();
+  const { t } = useTranslation();
 
   const [error, setError] = useState (null);
   const [watch, setWatch] = useState (null);
@@ -42,7 +44,7 @@ export const Details = () => {
     return (
       <div className="bg-primary min-h-screen flex items-center justify-center">
         <span className="text-accent font-sans tracking-widest uppercase animate-pulse">
-          Cargando pieza...
+          {t('details.loading')}
         </span>
       </div>
     );
@@ -56,7 +58,7 @@ export const Details = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
  
         <nav className="text-xs uppercase tracking-widest text-contrast/60 mb-10 md:mb-16 flex items-center gap-3">
-          <Link to="/" className="hover:text-accent transition-colors duration-300">Colección</Link>
+          <Link to="/" className="hover:text-accent transition-colors duration-300">{t('details.collection')}</Link>
           <span className="text-accent/40">/</span>
           <span className="text-accent">{watch.nombre}</span>
         </nav>
@@ -76,7 +78,7 @@ export const Details = () => {
  
                 {watch.destacado && (
                   <span className="absolute top-6 right-6 bg-accent text-primary text-[10px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-sm shadow-lg">
-                    Destacado
+                    {t('details.featured')}
                   </span>
                 )}
               </div>
@@ -102,8 +104,8 @@ export const Details = () => {
                   {formatPrecio(watch.precio)}
                 </p>
                 <p className="text-xs text-contrast/50 uppercase tracking-widest pb-1 flex flex-col items-end">
-                  Disponibilidad
-                  <span className="text-contrast font-medium mt-1">{watch.stock} piezas</span>
+                  {t('details.availability')}
+                  <span className="text-contrast font-medium mt-1">{watch.stock} {t('details.pieces')}</span>
                 </p>
               </div>
             </div>
@@ -114,14 +116,14 @@ export const Details = () => {
               rel="noopener noreferrer"
               className="relative overflow-hidden group w-full bg-accent text-primary py-5 uppercase tracking-[0.2em] text-xs font-bold transition-all duration-300 mb-16 block text-center hover:bg-contrast hover:text-primary"
             >
-              <span className="relative z-10">Cotizar vía WhatsApp</span>
+              <span className="relative z-10">{t('details.whatsappButton')}</span>
               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-contrast/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite] z-0"></div>
             </a>
  
             <div className="mb-16 group">
               <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-6 flex items-center transition-all duration-500 group-hover:translate-x-2">
                 <span className="w-8 h-[1px] bg-accent mr-4"></span>
-                El Relato
+                {t('details.story')}
               </h3>
               <p className="text-contrast/80 group-hover:text-contrast leading-loose font-light text-base md:text-lg">
                 {watch.detalles}
@@ -131,13 +133,13 @@ export const Details = () => {
             <div className="border-t border-accent/20 pt-10 group">
               <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-8 flex items-center transition-all duration-500 group-hover:translate-x-2">
                 <span className="w-8 h-[1px] bg-accent mr-4"></span>
-                Especificaciones Técnicas
+                {t('details.specs')}
               </h3>
  
               <dl className="divide-y divide-accent/10 text-sm border-b border-accent/10">
-                <SpecificationRow label="Categoría" value={watch.categoria} />
-                <SpecificationRow label="Resistencia al Agua" value={watch.resistencia_agua} />
-                <SpecificationRow label="Materiales Principales" value={watch.materiales?.join(', ')} />
+                <SpecificationRow label={t('details.category')} value={watch.categoria} />
+                <SpecificationRow label={t('details.waterResistance')} value={watch.resistencia_agua} />
+                <SpecificationRow label={t('details.materials')} value={watch.materiales?.join(', ')} />
               </dl>
             </div>
  
