@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import HeroSection from '../../components/Hero/heroSection';
+import HeroSection from '../../components/Hero/HeroSection';
 import ProductSection from '../../components/ProductSection/ProductSection';
 
 const Home = () => {
