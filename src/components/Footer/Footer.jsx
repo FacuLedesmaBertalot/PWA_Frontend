@@ -1,10 +1,11 @@
 import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
-  // Función para simular la suscripción al newsletter sin recargar la página
+  const { t } = useTranslation();
+
   const handleSubscribe = (e) => {
     e.preventDefault();
-    // Como no hay backend, simplemente podríamos limpiar el input o mostrar un mensaje
     const emailInput = e.target.elements.email;
     if (emailInput.value) {
       emailInput.value = '';
@@ -22,24 +23,24 @@ const Footer = () => {
               Tempo Deluxe
             </h2>
             <p className="text-contrast/60 text-sm font-light leading-relaxed mb-6">
-              El tiempo, a su medida. Curaduría de piezas de distinción y alta relojería para coleccionistas exigentes.
+              {t('footer.brandDesc')}
             </p>
           </div>
 
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-6">
-              Explorar
+              {t('footer.exploreTitle')}
             </h3>
             <ul className="space-y-4 text-sm font-light text-contrast/70">
               <li>
                 <Link to="/" className="hover:text-accent transition-colors duration-300 relative group inline-block">
-                  Catálogo
+                  {t('footer.catalog')}
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
               <li>
                 <Link to="/favorites" className="hover:text-accent transition-colors duration-300 relative group inline-block">
-                  Colección Privada
+                  {t('footer.privateCollection')}
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
@@ -48,7 +49,7 @@ const Footer = () => {
 
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-6">
-              Boutique
+              {t('footer.boutiqueTitle')}
             </h3>
             <address className="not-italic text-sm font-light text-contrast/70 space-y-2">
               <p>Av. Argentina 1200</p>
@@ -68,16 +69,16 @@ const Footer = () => {
 
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-6">
-              El Club Tempo
+              {t('footer.clubTitle')}
             </h3>
             <p className="text-contrast/60 text-sm font-light mb-4">
-              Reciba invitaciones a ventas privadas y novedades sobre piezas exclusivas.
+              {t('footer.clubDesc')}
             </p>
             <form onSubmit={handleSubscribe} className="relative mt-2 group">
               <input 
                 type="email" 
                 name="email"
-                placeholder="Su dirección de correo" 
+                placeholder={t('footer.emailPlaceholder')}
                 required
                 className="w-full bg-transparent border-b border-contrast/20 py-3 text-sm text-contrast font-light outline-none placeholder:text-contrast/30 focus:border-accent transition-colors duration-300"
               />
@@ -99,20 +100,20 @@ const Footer = () => {
         <div className="border-t border-accent/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
           
           <p className="text-xs text-contrast/50 font-light md:w-1/3">
-            © 2026 Tempo Deluxe. Todos los derechos reservados.
+            {t('footer.copyright')}
           </p>
 
           <p className="text-xs text-contrast/50 font-light md:w-1/3 md:text-center">
-            Desarrollado por:{' '}
+            {t('footer.developedBy')} {' '}
             <a href="https://github.com/FacuLedesmaBertalot" target="_blank" rel="noopener noreferrer" className="text-contrast/70 hover:text-accent transition-colors duration-300">Facundo Ledesma</a>,{' '}
-            <a href="https://github.com/Alejo4758" target="_blank" rel="noopener noreferrer" className="text-contrast/70 hover:text-accent transition-colors duration-300">Alejo Lopez</a> y{' '}
+            <a href="https://github.com/Alejo4758" target="_blank" rel="noopener noreferrer" className="text-contrast/70 hover:text-accent transition-colors duration-300">Alejo Lopez</a> {t('footer.and')}{' '}
             <a href="https://github.com/Ibenjamindlf" target="_blank" rel="noopener noreferrer" className="text-contrast/70 hover:text-accent transition-colors duration-300">Benjamin de la Fuente</a>
           </p>
 
           <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6 text-xs text-contrast/50 font-light md:w-1/3">
-            <a href="https://actecil.eu/wp-content/uploads/2024/07/Portadas-web-Politica-de-Privacidad.png" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors duration-300">Política de Privacidad</a>
-            <a href="https://images7.memedroid.com/images/UPLOADED85/542709c48cd62.jpeg" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors duration-300">Términos de Servicio</a>
-            <a href="https://recetasdecocina.elmundo.es/wp-content/uploads/2015/09/cookies-receta.jpg" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors duration-300">Cookies</a>
+            <a href="https://actecil.eu/wp-content/uploads/2024/07/Portadas-web-Politica-de-Privacidad.png" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors duration-300">{t('footer.privacyPolicy')}</a>
+            <a href="https://images7.memedroid.com/images/UPLOADED85/542709c48cd62.jpeg" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors duration-300">{t('footer.termsOfService')}</a>
+            <a href="https://recetasdecocina.elmundo.es/wp-content/uploads/2015/09/cookies-receta.jpg" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors duration-300">{t('footer.cookies')}</a>
           </div>
           
         </div>

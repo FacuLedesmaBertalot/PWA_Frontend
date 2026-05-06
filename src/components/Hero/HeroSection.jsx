@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const HeroSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="relative bg-primary overflow-hidden min-h-[calc(100vh-6rem)] flex items-center">
       
@@ -13,25 +16,25 @@ const HeroSection = () => {
           {/* 1. Columna de Texto (Izquierda) */}
           <div className="flex flex-col justify-center text-center lg:text-left">
             <p className="text-accent text-xs md:text-sm tracking-[0.3em] font-semibold uppercase mb-4 animate-[pulse_3s_ease-in-out_infinite]">
-              Artesanía Suiza Desde 1892
+              {t('hero.kicker')}
             </p>
             
             <h1 className="text-contrast font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 drop-shadow-lg">
-              El Arte de la <br className="hidden md:block" />
-              <span className="text-accent font-normal italic"> Elegancia </span> 
-              Atemporal
+              {t('hero.titlePart1')} <br className="hidden md:block" />
+              <span className="text-accent font-normal italic"> {t('hero.titleAccent')} </span> 
+              {t('hero.titlePart2')}
             </h1>
             
             <p className="text-contrast/80 text-lg md:text-xl max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed font-light">
-              Descubre relojes excepcionales donde la herencia se encuentra con la innovación. Cada pieza cuenta una historia de precisión, creada para aquellos que aprecian los detalles más finos.
+              {t('hero.description')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button className="bg-accent text-primary px-8 py-3.5 text-sm font-bold tracking-widest uppercase hover:bg-contrast transition-colors duration-300 shadow-lg shadow-accent/20">
-                Explorar Colección
+                {t('hero.ctaExplore')}
               </button>
               <button className="border border-accent text-accent px-8 py-3.5 text-sm font-bold tracking-widest uppercase hover:bg-accent hover:text-primary transition-all duration-300">
-                Contactanos
+                {t('hero.ctaContact')}
               </button>
             </div>
           </div>
@@ -53,7 +56,7 @@ const HeroSection = () => {
               <div className="relative z-10 w-full p-4 md:p-8 transition-transform duration-700 group-hover:translate-y-[-10px]">
                 <img 
                   src="/watch-hero.png" 
-                  alt="Reloj Tempo Deluxe Esmeralda"
+                  alt={t('hero.altImage')}
                   className="w-full h-auto object-contain drop-shadow-[0_25px_35px_rgba(212,175,55,0.15)] group-hover:drop-shadow-[0_35px_45px_rgba(212,175,55,0.25)] transition-all duration-700"
                 />
               </div>

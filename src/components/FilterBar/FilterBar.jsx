@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router";
+import { useTranslation } from "react-i18next";
 
-const FilterBar = ({ onSearch, categories = [], brands = [], disabled = false }) => {
+const FilterBar = ({ disabled = false }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation(); // Inicializamos el hook de traducción
   
   const [localSearch, setLocalSearch] = useState(searchParams.get('items') || '');
 
@@ -38,7 +40,7 @@ const FilterBar = ({ onSearch, categories = [], brands = [], disabled = false })
   return (
     <div className="w-full flex flex-col gap-3 bg-contrast/5 border border-secondary/20 rounded-lg px-6 py-5">
       <span className="text-accent text-center tracking-[0.25em] uppercase font-semibold">
-        Buscador de Piezas
+        {t('filterBar.title')}
       </span>
 
       <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
@@ -55,7 +57,7 @@ const FilterBar = ({ onSearch, categories = [], brands = [], disabled = false })
             value={localSearch}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
-            placeholder="Buscar por Nombre"
+            placeholder={t('filterBar.placeholder')}
             disabled={disabled}
             className="
               w-full bg-primary border border-secondary/40
@@ -75,14 +77,14 @@ const FilterBar = ({ onSearch, categories = [], brands = [], disabled = false })
           disabled={disabled}
           className="bg-accent/10 border border-accent/30 text-accent px-6 py-3 rounded text-xs uppercase tracking-widest hover:bg-accent hover:text-primary transition-all duration-300 cursor-pointer disabled:opacity-50"
         >
-          Buscar
+          {t('filterBar.search')}
         </button>
 
         <button
           onClick={handleClear}
           className="cursor-pointer text-contrast/30 hover:text-contrast/60 tracking-widest uppercase transition-colors duration-200 whitespace-nowrap text-xs"
         >
-          Limpiar
+          {t('filterBar.clear')}
         </button>
       </div>
     </div>

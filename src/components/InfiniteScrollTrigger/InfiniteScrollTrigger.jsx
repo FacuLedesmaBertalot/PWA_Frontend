@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const InfiniteScrollTrigger = ({ onTrigger, loading }) => {
   const observerRef = useRef();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,7 +26,7 @@ export const InfiniteScrollTrigger = ({ onTrigger, loading }) => {
     <div ref={observerRef} className="w-full py-10 flex justify-center">
       {loading && (
         <span className="text-accent font-sans tracking-widest uppercase animate-pulse">
-          Buscando piezas...
+          {t('infiniteScroll.loading')}
         </span>
       )}
     </div>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
+import { setLocalStorage } from '../../services/localStorage';
 
 const ArgentinaFlag = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" className="h-4 w-6 rounded-sm shadow-sm">
@@ -25,16 +27,22 @@ const USAFlag = () => (
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [lang, setLang] = useState('es');
+  
+  const { t, i18n } = useTranslation();
 
-  const toggleLang = () => setLang(prev => prev === 'es' ? 'en' : 'es');
+  const currentLang = i18n.language === 'en' ? 'en' : 'es';
+
+  const toggleLang = () => {
+    const newLang = currentLang === 'es' ? 'en' : 'es';
+    i18n.changeLanguage(newLang);
+    setLocalStorage('i18nextLng', newLang);
+  };
 
   return (
     <nav className="bg-primary border-b border-accent/30 font-serif shadow-xl sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
 
-          {/* Logo */}
           <div className="flex-shrink-0 flex items-center cursor-pointer">
             <Link
               to="/"
@@ -49,45 +57,42 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Links Desktop */}
           <div className="hidden md:flex space-x-12 absolute left-1/2 transform -translate-x-1/2">
             <Link
               to="/"
               className="text-accent hover:text-contrast transition-colors duration-300 uppercase tracking-widest text-sm font-medium border-b border-transparent hover:border-contrast pb-1"
             >
-              Home
+              {t('navbar.home')}
             </Link>
             <Link
               to="/favoritos"
               className="text-accent hover:text-contrast transition-colors duration-300 uppercase tracking-widest text-sm font-medium border-b border-transparent hover:border-contrast pb-1"
             >
-              Favoritos
+              {t('navbar.favorites')}
             </Link>
           </div>
 
-          {/* Selector de idioma Desktop */}
           <div className="hidden md:flex items-center">
             <button
               onClick={toggleLang}
               className="cursor-pointer flex items-center gap-2 border border-accent/30 hover:border-accent/70 bg-transparent hover:bg-accent/10 transition-all duration-300 px-3 py-2 rounded-sm group"
             >
-              {lang === 'es' ? <ArgentinaFlag /> : <USAFlag />}
+              {currentLang === 'es' ? <ArgentinaFlag /> : <USAFlag />}
               <span className="text-accent text-xs tracking-widest uppercase font-semibold group-hover:text-contrast transition-colors duration-300">
-                {lang === 'es' ? 'ES' : 'EN'}
+                {currentLang === 'es' ? 'ES' : 'EN'}
               </span>
             </button>
           </div>
 
           {/* Hamburguesa Mobile */}
           <div className="md:hidden flex items-center gap-3">
-            {/* Selector idioma mobile */}
             <button
               onClick={toggleLang}
               className="flex items-center gap-1.5 border border-accent/30 hover:border-accent/70 bg-transparent px-2 py-1.5 rounded-sm"
             >
-              {lang === 'es' ? <ArgentinaFlag /> : <USAFlag />}
+              {currentLang === 'es' ? <ArgentinaFlag /> : <USAFlag />}
               <span className="text-accent text-xs tracking-widest uppercase font-semibold">
-                {lang === 'es' ? 'ES' : 'EN'}
+                {currentLang === 'es' ? 'ES' : 'EN'}
               </span>
             </button>
 
@@ -121,14 +126,14 @@ const Navbar = () => {
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-accent hover:text-contrast block px-3 py-2 text-lg font-medium tracking-widest uppercase w-full text-center"
           >
-            Home
+            {t('navbar.home')}
           </Link>
           <Link
             to="/favoritos"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-accent hover:text-contrast block px-3 py-2 text-lg font-medium tracking-widest uppercase w-full text-center"
           >
-            Favoritos
+            {t('navbar.favorites')}
           </Link>
         </div>
       </div>
