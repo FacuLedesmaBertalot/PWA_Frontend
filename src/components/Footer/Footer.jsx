@@ -39,7 +39,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/favorites" className="hover:text-accent transition-colors duration-300 relative group inline-block">
+                <Link to="/favoritos" className="hover:text-accent transition-colors duration-300 relative group inline-block">
                   {t('footer.privateCollection')}
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent transition-all duration-300 group-hover:w-full"></span>
                 </Link>
