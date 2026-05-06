@@ -13,7 +13,7 @@ const Home = () => {
         
         <div className="w-full mb-8 border-b border-secondary/30 pb-4">
           <h2 className="text-3xl font-serif text-contrast">
-            {t("home.catalog")} <span className="text-sm font-sans text-accent tracking-widest uppercase ml-2">(Exploración Infinita)</span>
+            {t("home.catalog")} <span className="text-sm font-sans text-accent tracking-widest uppercase ml-2"></span>
           </h2>
         </div>
 

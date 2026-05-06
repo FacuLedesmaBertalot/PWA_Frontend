@@ -1,11 +1,13 @@
 import { Link } from 'react-router';
 import { ProductGrid } from '../../components/ProductGrid/ProductGrid';
 import { useFavorites } from '../../hooks/useFavorites';
+import { useTranslation } from 'react-i18next';
 
 
 export const Favorites = () => {
 
   const { favorites } = useFavorites();
+  const { t } = useTranslation();
 
   const hasFavorites = favorites.length > 0;
 
@@ -18,10 +20,10 @@ export const Favorites = () => {
         
         <div className="text-center mb-16 md:mb-24 animate-[fadeIn_0.8s_ease-out]">
           <h2 className="text-xs text-accent uppercase tracking-[0.4em] mb-4 font-semibold">
-            Su Selección
+            {t('favorites.subtitle')}
           </h2>
           <h1 className="text-4xl md:text-5xl font-serif text-contrast leading-tight font-extralight tracking-wide mb-6">
-            Colección Privada
+            {t('favorites.title')}
           </h1>
           <div className="w-12 h-[1px] bg-accent/50 mx-auto"></div>
         </div>
@@ -43,11 +45,11 @@ export const Favorites = () => {
             </div>
 
             <h3 className="text-2xl font-serif text-contrast mb-4 tracking-wide font-light">
-              Su estuche de seguridad aguarda.
+              {t('favorites.empty_title')}
             </h3>
             
             <p className="text-contrast/60 font-light max-w-md mx-auto mb-12 leading-loose text-sm md:text-base">
-              Aún no ha seleccionado ninguna pieza. Explore nuestro catálogo para descubrir y resguardar piezas de distinción que eleven su estilo personal.
+              {t('favorites.empty_description')}
             </p>
 
             <Link 
@@ -55,7 +57,7 @@ export const Favorites = () => {
               className="relative overflow-hidden group inline-flex bg-transparent border border-accent text-accent py-4 px-10 uppercase tracking-[0.2em] text-xs font-bold transition-all duration-500 ease-in-out hover:bg-accent hover:text-primary"
             >
               <span className="relative z-10 transition-colors duration-500">
-                Descubrir Catálogo
+                {t('favorites.cta')}
               </span>
             </Link>
           </div>
