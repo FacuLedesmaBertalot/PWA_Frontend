@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
 export const ProductNotFound = () => {
+    const { t } = useTranslation ();
+
 return (
     <div className="min-h-screen bg-primary flex flex-col items-center justify-center px-4 text-center font-sans">
         <h1 className="text-8xl md:text-9xl font-serif text-accent/20 mb-6 select-none">
