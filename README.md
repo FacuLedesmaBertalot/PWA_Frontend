@@ -41,6 +41,27 @@ To ensure that styles and navigation work correctly, the project relies on the f
 - **Global Styles:** The `@import "tailwindcss";` directive is located in `src/index.css`.
 - **Routing:** Centralized navigation management using React Router.
 
+## 🧪 Testing
+This project includes automated testing configured with modern tools used in professional frontend development.
+
+Installed Testing Libraries
+- **Vitest:** A blazing fast unit test framework powered by Vite.
+- **React Testing Library:** For testing React components by simulating real user behavior.
+- **jest-dom:** Provides custom DOM element matchers for assertions.
+- **user-event:** For simulating realistic user interactions (clicks, typing, etc.).
+- **jsdom:** A Node.js environment that simulates a web browser for testing purposes.
+
+- How to run the tests
+To run the tests in "watch" mode (automatically re-runs when you save files):
+```bash
+   npm run test
+```
+
+To run the tests a single time (useful for CI environments or final checks):
+```bash
+   npm run test:run
+```
+
 ## 💻 Git Workflow
 
 To maintain an organized team development process, we follow this branch schema:
