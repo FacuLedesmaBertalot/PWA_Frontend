@@ -20,7 +20,7 @@ export const ProductGrid = ({ watches }) => {
       {watches.map((watch) => (
         <Link
           key={watch.id}
-          to={`/item/${watch.id}`}
+          to={`/items/${watch.id}`}
           className="w-full flex justify-center outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
         >
           <ProductCard

@@ -13,11 +13,11 @@ function App() {
       <FavoritesProvider>
         <div className="flex flex-col min-h-screen">
           <Navbar />
-          <main className="flex-grow">
+          <main className="grow">
             <Routes>
               <Route path="/" element={<Home />} />
               
-              <Route path="/item/:id" element={<Details />} />
+              <Route path="/items/:id" element={<Details />} />
               <Route path="/favoritos" element={<Favorites />} />
 
               <Route path="*" element={<ProductNotFound />} />
