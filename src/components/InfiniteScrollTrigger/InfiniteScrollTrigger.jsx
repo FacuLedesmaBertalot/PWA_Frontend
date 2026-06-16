@@ -3,23 +3,37 @@ import { useTranslation } from 'react-i18next';
 
 export const InfiniteScrollTrigger = ({ onTrigger, loading }) => {
   const observerRef = useRef();
+  const ignoreInitialIntersection = useRef(true);
   const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !loading) {
+        const entry = entries[0];
+        if (!entry || ignoreInitialIntersection.current) return;
+
+        if (entry.isIntersecting && !loading) {
           onTrigger();
         }
       },
-      { threshold: 0.5 } 
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px 200px 0px',
+      }
     );
 
     if (observerRef.current) {
       observer.observe(observerRef.current);
     }
 
-    return () => observer.disconnect();
+    const initialTimeout = setTimeout(() => {
+      ignoreInitialIntersection.current = false;
+    }, 300);
+
+    return () => {
+      clearTimeout(initialTimeout);
+      observer.disconnect();
+    };
   }, [onTrigger, loading]);
 
   return (
