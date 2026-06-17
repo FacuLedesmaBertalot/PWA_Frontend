@@ -34,11 +34,12 @@
 
     "productGrid": {
         "emptyMessage": "No exclusive timepieces available at the moment.",
+        "loading": "Loading timepieces...",
         "defaultFeature": "Limited Edition"
     },
 
     "infiniteScroll": {
-        "loading": "Searching timepieces..."
+        "loading": "Loading more timepieces..."
     },
 
     "footer": {

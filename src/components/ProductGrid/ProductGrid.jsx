@@ -2,15 +2,24 @@ import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { ProductCard } from "../ProductCard/ProductCard";
 
-export const ProductGrid = ({ watches }) => {
+export const ProductGrid = ({ watches, loading }) => {
   const { t } = useTranslation();
 
   if (!watches || watches.length === 0) {
     return (
       <div className="flex justify-center items-center py-20 w-full">
-        <p className="text-contrast/60 font-light text-lg tracking-wide">
-          {t('productGrid.emptyMessage')}
-        </p>
+        {loading ? (
+          <div className="flex flex-col items-center gap-4">
+            <div className="h-10 w-10 rounded-full border-4 border-accent/30 border-t-accent animate-spin" />
+            <p className="text-contrast/60 font-light text-lg tracking-wide">
+              {t('productGrid.loading')}
+            </p>
+          </div>
+        ) : (
+          <p className="text-contrast/60 font-light text-lg tracking-wide">
+            {t('productGrid.emptyMessage')}
+          </p>
+        )}
       </div>
     );
   }

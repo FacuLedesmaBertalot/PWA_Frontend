@@ -10,7 +10,7 @@ export default function ProductSection() {
         <section className='flex flex-col gap-6 w-full'>
             <FilterBar disabled={loading} />
 
-            <ProductGrid watches={watches} />
+            <ProductGrid watches={watches} loading={loading} />
 
             {hasMore && (
                 <InfiniteScrollTrigger onTrigger={loadMore} loading={loading} />

@@ -34,11 +34,12 @@
 
     "productGrid": {
         "emptyMessage": "No hay piezas exclusivas disponibles en este momento.",
+        "loading": "Cargando piezas...",
         "defaultFeature": "Edición Limitada"
     },
 
     "infiniteScroll": {
-        "loading": "Buscando piezas..."
+        "loading": "Cargando más piezas..."
     },
 
     "footer": {
