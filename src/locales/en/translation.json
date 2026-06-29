@@ -6,7 +6,9 @@
     "navbar": {
         "home": "Home",
         "favorites": "Favorites",
-        "catalog": "Catalog"
+        "catalog": "Catalog",
+        "signup": "Sign Up",
+        "login": "Login"
     },
 
     "hero": {
@@ -27,6 +29,50 @@
         "clear": "Clear"
     },
     
+    "signup": {
+        "kicker": "Create your account",
+        "title": "Sign up to Tempo Deluxe",
+        "description": "Complete your information to start exploring exclusive watches and managing your favorites.",
+        "fields": {
+            "name": "Name",
+            "lastName": "Last Name",
+            "email": "Email",
+            "password": "Password"
+        },
+        "placeholders": {
+            "name": "Enter your name",
+            "lastName": "Enter your last name",
+            "email": "example@mail.com",
+            "password": "Minimum 8 characters"
+        },
+        "buttons": {
+            "submit": "Create account",
+            "loading": "Registering..."
+        },
+        "loginPrompt": "Already have an account?",
+        "loginLink": "Sign in here",
+        "status": {
+            "requiredFields": "Please complete all required fields.",
+            "success": "Registration successful. Redirecting to login...",
+            "invalidData": "Invalid data. Please check the form.",
+            "alreadyRegistered": "The email is already registered.",
+            "genericError": "Could not complete registration. Please try again."
+        },
+        "errors": {
+            "nameRequired": "Name is required.",
+            "lastNameRequired": "Last name is required.",
+            "emailRequired": "Email is required.",
+            "passwordRequired": "Password is required."
+        }
+    },
+
+    "login": {
+        "kicker": "Welcome back",
+        "title": "Login screen",
+        "description": "Once you finish the login flow, new registrations will be redirected here.",
+        "createAccount": "Create an account"
+    },
+
     "productCard": {
         "altImage": "Watch {{brand}} {{model}}",
         "viewPiece": "View Piece"
@@ -86,4 +132,4 @@
         "description": "The piece you are looking for is not in our collection; it was acquired by another collector or, unfortunately, lost in a temporal anomaly.",
         "cta": "Explore the collection"
     }
-}
+} 
