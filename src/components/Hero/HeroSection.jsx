@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 const HeroSection = () => {
@@ -29,14 +30,6 @@ const HeroSection = () => {
               {t('hero.description')}
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="bg-accent text-primary px-8 py-3.5 text-sm font-bold tracking-widest uppercase hover:bg-contrast transition-colors duration-300 shadow-lg shadow-accent/20">
-                {t('hero.ctaExplore')}
-              </button>
-              <button className="border border-accent text-accent px-8 py-3.5 text-sm font-bold tracking-widest uppercase hover:bg-accent hover:text-primary transition-all duration-300">
-                {t('hero.ctaContact')}
-              </button>
-            </div>
           </div>
 
           {/* 2. Columna de Imagen (Derecha) */}
