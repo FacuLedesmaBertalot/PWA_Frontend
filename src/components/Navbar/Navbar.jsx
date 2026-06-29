@@ -72,7 +72,19 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center gap-6">
+            <Link
+              to="/login"
+              className="text-accent hover:text-contrast transition-colors duration-300 uppercase tracking-widest text-sm font-medium"
+            >
+              {t('navbar.login')}
+            </Link>
+            <Link
+              to="/registro"
+              className="rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-primary transition hover:bg-contrast"
+            >
+              {t('navbar.signup')}
+            </Link>
             <button
               onClick={toggleLang}
               className="cursor-pointer flex items-center gap-2 border border-accent/30 hover:border-accent/70 bg-transparent hover:bg-accent/10 transition-all duration-300 px-3 py-2 rounded-sm group"
@@ -134,6 +146,20 @@ const Navbar = () => {
             className="text-accent hover:text-contrast block px-3 py-2 text-lg font-medium tracking-widest uppercase w-full text-center"
           >
             {t('navbar.favorites')}
+          </Link>
+          <Link
+            to="/login"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-accent hover:text-contrast block px-3 py-2 text-lg font-medium tracking-widest uppercase w-full text-center"
+          >
+            {t('navbar.login')}
+          </Link>
+          <Link
+            to="/registro"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="rounded-full bg-accent px-3 py-2 text-sm font-semibold uppercase tracking-[0.25em] text-primary w-full text-center transition hover:bg-contrast"
+          >
+            {t('navbar.signup')}
           </Link>
         </div>
       </div>

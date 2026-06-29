@@ -6,7 +6,9 @@
     "navbar": {
         "home": "Inicio",
         "favorites": "Favoritos",
-        "catalog": "Catálogo"
+        "catalog": "Catálogo",
+        "signup": "Registrarse",
+        "login": "Iniciar Sesión"
     },
 
     "hero": {
@@ -25,6 +27,50 @@
         "placeholder": "Buscar por Nombre",
         "search": "Buscar",
         "clear": "Limpiar"
+    },
+
+    "signup": {
+        "kicker": "Crea tu cuenta",
+        "title": "Regístrate en Tempo Deluxe",
+        "description": "Completa tus datos para comenzar a explorar relojes exclusivos y gestionar tus favoritos.",
+        "fields": {
+            "name": "Nombre",
+            "lastName": "Apellido",
+            "email": "Email",
+            "password": "Contraseña"
+        },
+        "placeholders": {
+            "name": "Ingresa tu nombre",
+            "lastName": "Ingresa tu apellido",
+            "email": "ejemplo@mail.com",
+            "password": "Mínimo 8 caracteres"
+        },
+        "buttons": {
+            "submit": "Crear cuenta",
+            "loading": "Registrando..."
+        },
+        "loginPrompt": "¿Ya tienes cuenta?",
+        "loginLink": "Inicia sesión aquí",
+        "status": {
+            "requiredFields": "Por favor completa todos los campos requeridos.",
+            "success": "Registro exitoso. Redirigiendo al login...",
+            "invalidData": "Datos inválidos. Revisa el formulario.",
+            "alreadyRegistered": "El email ya está registrado.",
+            "genericError": "No se pudo completar el registro. Intenta nuevamente."
+        },
+        "errors": {
+            "nameRequired": "El nombre es obligatorio.",
+            "lastNameRequired": "El apellido es obligatorio.",
+            "emailRequired": "El email es obligatorio.",
+            "passwordRequired": "La contraseña es obligatoria."
+        }
+    },
+
+    "login": {
+        "kicker": "Bienvenido de nuevo",
+        "title": "Pantalla de Login",
+        "description": "Cuando completes el desarrollo del login, este será el destino de los nuevos registros.",
+        "createAccount": "Crear una cuenta"
     },
 
     "productCard": {
