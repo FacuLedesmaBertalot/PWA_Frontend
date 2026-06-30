@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { useFavorites } from '../../hooks/useFavorites';
-// Ajustá esta ruta para que apunte correctamente a tu archivo AuthContext.jsx
 import { AuthContext } from '../../context/AuthContext'; 
 
 export const FavoriteButton = ({ watch, className = '' }) => {
@@ -17,8 +16,6 @@ export const FavoriteButton = ({ watch, className = '' }) => {
     e.stopPropagation(); 
     
     if (!token) {
-      // 1. Volamos el alert()
-      // 2. Redirigimos al login, pero le mandamos un "estado" por atrás
       navigate('/login', { 
         state: { 
           mensaje: "Iniciá sesión para guardar relojes en tu colección." 
