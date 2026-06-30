@@ -14,10 +14,10 @@ export const FavoritesProvider = ({ children }) => {
                 try {
                     const dbFavorites = await getFavorites(token);
                     console.log("DATA DEL BACKEND AL RECARGAR:", dbFavorites);
-        // 1. Agarramos el array donde sea que venga (en tu caso, dbFavorites.favoritos)
+
         const rawArray = Array.isArray(dbFavorites) ? dbFavorites : (dbFavorites?.favoritos || dbFavorites?.data || []);
 
-        // 2. EXTRAEMOS EL RELOJ: Si el objeto trae la propiedad "reloj", sacamos solo eso. Si no, lo dejamos como está.
+
         const validArray = rawArray.map(item => item.reloj ? item.reloj : item);
 
         setFavorites(validArray);
@@ -25,7 +25,7 @@ export const FavoritesProvider = ({ children }) => {
                     console.error('Error al cargar favoritos del servidor:', error);
                 }
             } else {
-                // Si se cierra la sesión o es visitante, vaciamos la lista
+
                 setFavorites([]);
             }
         };
@@ -34,7 +34,7 @@ export const FavoritesProvider = ({ children }) => {
     }, [token]);
 
     const toggleFavorite = async (product) => {
-        // Doble validación de seguridad por si acaso
+
         if (!token) return;
 
         const safeFavorites = Array.isArray(favorites) ? favorites : [];
