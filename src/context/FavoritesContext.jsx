@@ -1,26 +1,62 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { getLocalStorage, setLocalStorage } from '../services/localStorage';
+import { AuthContext } from './AuthContext'; 
+import { getFavorites, addFavorite, removeFavorite } from '../services/favoritesService'; 
 
 const FavoritesContext = createContext();
-const FAVORITES_KEY = 'tempo_deluxe_favorites';
 
 export const FavoritesProvider = ({ children }) => {
-    const [favorites, setFavorites] = useState(() => {
-        return getLocalStorage(FAVORITES_KEY) || [];
-    });
+    const { token } = useContext(AuthContext);
+    const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
-        setLocalStorage(FAVORITES_KEY, favorites);
-    }, [favorites]);
+        const fetchFavorites = async () => {
+            if (token) {
+                try {
+                    const dbFavorites = await getFavorites(token);
+                    console.log("DATA DEL BACKEND AL RECARGAR:", dbFavorites);
+        // 1. Agarramos el array donde sea que venga (en tu caso, dbFavorites.favoritos)
+        const rawArray = Array.isArray(dbFavorites) ? dbFavorites : (dbFavorites?.favoritos || dbFavorites?.data || []);
 
-    const toggleFavorite = product => {
-        setFavorites((prev) => {
-            const exists = prev.some((item) => item.id === product.id);
-            return exists ? prev.filter((item) => item.id !== product.id) : [...prev, product];
-        });
+        // 2. EXTRAEMOS EL RELOJ: Si el objeto trae la propiedad "reloj", sacamos solo eso. Si no, lo dejamos como está.
+        const validArray = rawArray.map(item => item.reloj ? item.reloj : item);
+
+        setFavorites(validArray);
+                } catch (error) {
+                    console.error('Error al cargar favoritos del servidor:', error);
+                }
+            } else {
+                // Si se cierra la sesión o es visitante, vaciamos la lista
+                setFavorites([]);
+            }
+        };
+
+        fetchFavorites();
+    }, [token]);
+
+    const toggleFavorite = async (product) => {
+        // Doble validación de seguridad por si acaso
+        if (!token) return;
+
+        const safeFavorites = Array.isArray(favorites) ? favorites : [];
+        const exists = safeFavorites.some((item) => item.id === product.id);
+
+        try {
+            if (exists) {
+                await removeFavorite(product.id, token);
+                setFavorites((prev) => prev.filter((item) => item.id !== product.id));
+            } else {
+                await addFavorite(product.id, token);
+                setFavorites((prev) => [...prev, product]);
+            }
+        } catch (error) {
+            console.error('Error al actualizar favorito en el servidor:', error);
+        }
     };
 
-    const isFavorite = (id) => favorites.some((item) => item.id === id);
+    const isFavorite = (id) => {
+        if (!Array.isArray(favorites)) return false;
+        return favorites.some((item) => item.id === id);
+    };
 
     return (
         <FavoritesContext.Provider value={{ favorites, toggleFavorite, isFavorite }}>
@@ -31,9 +67,8 @@ export const FavoritesProvider = ({ children }) => {
 
 export const useFavorites = () => {
     const context = useContext(FavoritesContext);
-
     if (!context) {
-        throw new Error ('useFavorites debe usarse dentro de un FavoritesProvider');
+        throw new Error('useFavorites debe usarse dentro de un FavoritesProvider');
     }
     return context;
-}
+};
