@@ -90,7 +90,7 @@ export const loginUser = async ({ email, password }) => {
     return {
       status: null,
       data: null,
-      error: 'Error de conexión con el backend. Intenta nuevamente.',
+      error: 'Error. Intenta nuevamente.',
     };
   }
 };
