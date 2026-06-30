@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router'; // Sumamos useLocation
+import { Link, useNavigate, useLocation } from 'react-router'; 
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../../context/AuthContext';
 import { loginUser } from '../../services/authService';
@@ -9,7 +9,7 @@ import StatusAlert from '../../components/AuthForm/StatusAlert';
 const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const location = useLocation(); // Atrapamos la ruta actual y sus datos ocultos
+  const location = useLocation(); 
   
   const { iniciarSesion } = useContext(AuthContext);
 
@@ -19,9 +19,9 @@ const Login = () => {
   });
   const [errors, setErrors] = useState({});
   
-  // MAGIA ACÁ: Si viene un mensaje desde el botón de favoritos, lo ponemos como estado inicial
+
   const [status, setStatus] = useState({ 
-    type: location.state?.mensaje ? 'error' : '', // Podés cambiar 'error' por 'info' si tu StatusAlert lo soporta
+    type: location.state?.mensaje ? 'error' : '', 
     message: location.state?.mensaje || '' 
   });
   
@@ -46,7 +46,6 @@ const Login = () => {
     const { name, value } = event.target;
     setForm((prevForm) => ({ ...prevForm, [name]: value }));
     setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
-    // Al escribir, se limpia la alerta (incluyendo el mensaje que mandamos desde Favoritos)
     setStatus({ type: '', message: '' }); 
   };
 
@@ -92,7 +91,7 @@ const Login = () => {
             </p>
           </div>
 
-          {/* Tu StatusAlert ahora va a mostrar el mensaje si venía del botón de favoritos */}
+
           <StatusAlert type={status.type} message={status.message} />
 
           <form className="space-y-6 mt-6" onSubmit={handleSubmit} noValidate>
