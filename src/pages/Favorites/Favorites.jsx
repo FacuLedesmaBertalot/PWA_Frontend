@@ -1,13 +1,22 @@
-import { Link } from 'react-router';
+import { useContext } from 'react';
+import { Link, Navigate } from 'react-router';
 import { ProductGrid } from '../../components/ProductGrid/ProductGrid';
 import { useFavorites } from '../../hooks/useFavorites';
 import { useTranslation } from 'react-i18next';
-
+// Ajustá esta ruta según dónde tengas el contexto
+import { AuthContext } from '../../context/AuthContext';
 
 export const Favorites = () => {
-
   const { favorites } = useFavorites();
   const { t } = useTranslation();
+  
+  // 1. Traemos el token para saber si está logueado
+  const { token } = useContext(AuthContext);
+
+  // 2. BARRERA DE SEGURIDAD: Si es visitante, lo redirigimos al login y no renderizamos nada de abajo.
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
 
   const hasFavorites = favorites.length > 0;
 
@@ -31,6 +40,7 @@ export const Favorites = () => {
         {hasFavorites ? (
           
           <div className="animate-[fadeIn_1s_ease-out]">
+            {/* Acá adentro, ProductGrid va a recibir la data directa de la base de datos mágicamente */}
             <ProductGrid watches={favorites} />
           </div>
 

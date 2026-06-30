@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { setLocalStorage } from '../../services/localStorage';
+// Ajustá esta ruta para que apunte correctamente a tu archivo AuthContext.jsx
+import { AuthContext } from '../../context/AuthContext'; 
 
 const ArgentinaFlag = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" className="h-4 w-6 rounded-sm shadow-sm">
@@ -29,6 +31,9 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const { t, i18n } = useTranslation();
+  
+  // Consumimos el contexto de autenticación
+  const { token, usuario, logout } = useContext(AuthContext);
 
   const currentLang = i18n.language === 'en' ? 'en' : 'es';
 
@@ -38,11 +43,20 @@ const Navbar = () => {
     setLocalStorage('i18nextLng', newLang);
   };
 
+  const handleLogout = () => {
+    logout();
+    setIsMobileMenuOpen(false);
+  };
+
+  // Extraemos el nombre del usuario
+  const userName = usuario?.nombre || 'Usuario';
+  
   return (
     <nav className="bg-primary border-b border-accent/30 font-serif shadow-xl sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
 
+          {/* LOGO */}
           <div className="flex-shrink-0 flex items-center cursor-pointer">
             <Link
               to="/"
@@ -57,6 +71,7 @@ const Navbar = () => {
             </Link>
           </div>
 
+          {/* LINKS ESCRITORIO (CENTRO) */}
           <div className="hidden md:flex space-x-12 absolute left-1/2 transform -translate-x-1/2">
             <Link
               to="/"
@@ -64,27 +79,51 @@ const Navbar = () => {
             >
               {t('navbar.home')}
             </Link>
-            <Link
-              to="/favoritos"
-              className="text-accent hover:text-contrast transition-colors duration-300 uppercase tracking-widest text-sm font-medium border-b border-transparent hover:border-contrast pb-1"
-            >
-              {t('navbar.favorites')}
-            </Link>
+            
+            {/* OCULTAMOS FAVORITOS EN ESCRITORIO SI NO HAY TOKEN */}
+            {token && (
+              <Link
+                to="/favoritos"
+                className="text-accent hover:text-contrast transition-colors duration-300 uppercase tracking-widest text-sm font-medium border-b border-transparent hover:border-contrast pb-1"
+              >
+                {t('navbar.favorites')}
+              </Link>
+            )}
           </div>
 
+          {/* BOTONES ESCRITORIO (DERECHA) */}
           <div className="hidden md:flex items-center gap-6">
-            <Link
-              to="/login"
-              className="text-accent hover:text-contrast transition-colors duration-300 uppercase tracking-widest text-sm font-medium"
-            >
-              {t('navbar.login')}
-            </Link>
-            <Link
-              to="/registro"
-              className="rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-primary transition hover:bg-contrast"
-            >
-              {t('navbar.signup')}
-            </Link>
+            {token ? (
+              // ESTADO: LOGUEADO
+              <div className="flex items-center gap-4">
+                <span className="text-contrast text-sm uppercase tracking-widest font-medium">
+                  Hola, {userName}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="rounded-full border border-accent/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-accent transition hover:bg-accent hover:text-primary"
+                >
+                  {t('navbar.logout') || 'Cerrar Sesión'}
+                </button>
+              </div>
+            ) : (
+              // ESTADO: VISITANTE
+              <>
+                <Link
+                  to="/login"
+                  className="text-accent hover:text-contrast transition-colors duration-300 uppercase tracking-widest text-sm font-medium"
+                >
+                  {t('navbar.login')}
+                </Link>
+                <Link
+                  to="/registro"
+                  className="rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-primary transition hover:bg-contrast"
+                >
+                  {t('navbar.signup')}
+                </Link>
+              </>
+            )}
+
             <button
               onClick={toggleLang}
               className="cursor-pointer flex items-center gap-2 border border-accent/30 hover:border-accent/70 bg-transparent hover:bg-accent/10 transition-all duration-300 px-3 py-2 rounded-sm group"
@@ -96,7 +135,7 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Hamburguesa Mobile */}
+          {/* HAMBURGUESA MOBILE */}
           <div className="md:hidden flex items-center gap-3">
             <button
               onClick={toggleLang}
@@ -126,7 +165,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Menú Mobile Desplegable */}
+      {/* MENÚ MOBILE DESPLEGABLE */}
       <div
         className={`md:hidden absolute w-full bg-secondary border-b border-accent/30 transition-all duration-300 ease-in-out origin-top ${
           isMobileMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 h-0 overflow-hidden'
@@ -140,27 +179,50 @@ const Navbar = () => {
           >
             {t('navbar.home')}
           </Link>
-          <Link
-            to="/favoritos"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-accent hover:text-contrast block px-3 py-2 text-lg font-medium tracking-widest uppercase w-full text-center"
-          >
-            {t('navbar.favorites')}
-          </Link>
-          <Link
-            to="/login"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-accent hover:text-contrast block px-3 py-2 text-lg font-medium tracking-widest uppercase w-full text-center"
-          >
-            {t('navbar.login')}
-          </Link>
-          <Link
-            to="/registro"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="rounded-full bg-accent px-3 py-2 text-sm font-semibold uppercase tracking-[0.25em] text-primary w-full text-center transition hover:bg-contrast"
-          >
-            {t('navbar.signup')}
-          </Link>
+          
+          {/* OCULTAMOS FAVORITOS EN MOBILE SI NO HAY TOKEN */}
+          {token && (
+            <Link
+              to="/favoritos"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-accent hover:text-contrast block px-3 py-2 text-lg font-medium tracking-widest uppercase w-full text-center"
+            >
+              {t('navbar.favorites')}
+            </Link>
+          )}
+          
+          {token ? (
+             // MOBILE: ESTADO LOGUEADO
+             <div className="w-full border-t border-accent/20 pt-4 mt-2 flex flex-col items-center gap-4">
+                <span className="text-contrast text-sm uppercase tracking-widest font-medium">
+                  Hola, {userName}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="rounded-full border border-accent/50 px-4 py-2 text-sm font-semibold uppercase tracking-[0.25em] text-accent w-full text-center transition hover:bg-accent hover:text-primary"
+                >
+                  {t('navbar.logout') || 'Cerrar Sesión'}
+                </button>
+             </div>
+          ) : (
+             // MOBILE: ESTADO VISITANTE
+             <div className="w-full border-t border-accent/20 pt-4 mt-2 flex flex-col items-center gap-4">
+                <Link
+                  to="/login"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-accent hover:text-contrast block px-3 py-2 text-lg font-medium tracking-widest uppercase w-full text-center"
+                >
+                  {t('navbar.login')}
+                </Link>
+                <Link
+                  to="/registro"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="rounded-full bg-accent px-3 py-2 text-sm font-semibold uppercase tracking-[0.25em] text-primary w-full text-center transition hover:bg-contrast"
+                >
+                  {t('navbar.signup')}
+                </Link>
+             </div>
+          )}
         </div>
       </div>
     </nav>
