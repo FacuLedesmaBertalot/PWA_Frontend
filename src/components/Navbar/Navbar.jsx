@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { setLocalStorage } from '../../services/localStorage';
-// Ajustá esta ruta para que apunte correctamente a tu archivo AuthContext.jsx
 import { AuthContext } from '../../context/AuthContext'; 
 
 const ArgentinaFlag = () => (
@@ -32,7 +31,6 @@ const Navbar = () => {
   
   const { t, i18n } = useTranslation();
   
-  // Consumimos el contexto de autenticación
   const { token, usuario, logout } = useContext(AuthContext);
 
   const currentLang = i18n.language === 'en' ? 'en' : 'es';
@@ -48,7 +46,6 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
-  // Extraemos el nombre del usuario
   const userName = usuario?.nombre || 'Usuario';
   
   return (
@@ -56,7 +53,6 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
 
-          {/* LOGO */}
           <div className="flex-shrink-0 flex items-center cursor-pointer">
             <Link
               to="/"
@@ -71,7 +67,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* LINKS ESCRITORIO (CENTRO) */}
+
           <div className="hidden md:flex space-x-12 absolute left-1/2 transform -translate-x-1/2">
             <Link
               to="/"
@@ -80,7 +76,7 @@ const Navbar = () => {
               {t('navbar.home')}
             </Link>
             
-            {/* OCULTAMOS FAVORITOS EN ESCRITORIO SI NO HAY TOKEN */}
+
             {token && (
               <Link
                 to="/favoritos"
@@ -91,10 +87,10 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* BOTONES ESCRITORIO (DERECHA) */}
+
           <div className="hidden md:flex items-center gap-6">
             {token ? (
-              // ESTADO: LOGUEADO
+
               <div className="flex items-center gap-4">
                 <span className="text-contrast text-sm uppercase tracking-widest font-medium">
                   Hola, {userName}
@@ -107,7 +103,7 @@ const Navbar = () => {
                 </button>
               </div>
             ) : (
-              // ESTADO: VISITANTE
+
               <>
                 <Link
                   to="/login"
@@ -165,7 +161,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* MENÚ MOBILE DESPLEGABLE */}
+
       <div
         className={`md:hidden absolute w-full bg-secondary border-b border-accent/30 transition-all duration-300 ease-in-out origin-top ${
           isMobileMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 h-0 overflow-hidden'
@@ -180,7 +176,7 @@ const Navbar = () => {
             {t('navbar.home')}
           </Link>
           
-          {/* OCULTAMOS FAVORITOS EN MOBILE SI NO HAY TOKEN */}
+
           {token && (
             <Link
               to="/favoritos"
@@ -192,7 +188,7 @@ const Navbar = () => {
           )}
           
           {token ? (
-             // MOBILE: ESTADO LOGUEADO
+
              <div className="w-full border-t border-accent/20 pt-4 mt-2 flex flex-col items-center gap-4">
                 <span className="text-contrast text-sm uppercase tracking-widest font-medium">
                   Hola, {userName}
@@ -205,7 +201,7 @@ const Navbar = () => {
                 </button>
              </div>
           ) : (
-             // MOBILE: ESTADO VISITANTE
+
              <div className="w-full border-t border-accent/20 pt-4 mt-2 flex flex-col items-center gap-4">
                 <Link
                   to="/login"
